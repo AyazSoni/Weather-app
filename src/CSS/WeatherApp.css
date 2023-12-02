@@ -1,0 +1,37 @@
+.App-Container{
+   width : 40vh;
+   height:100%;
+   max-height:  59vh;
+   background: rgb(2,0,36);
+background: linear-gradient(150deg, rgba(2,0,36,1) 0%, rgba(8,244,155,1) 1%, rgba(81,66,144,1) 100%);
+  border-radius: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.App-Container:hover{
+  transform: translateY(-5px); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  padding: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  .App-Container{
+    width: 500px;
+    max-height:900px;
+  }
+}
+
+.convert{
+  margin-bottom : 100px;
+ display:flex;
+ justify-content: center;
+}

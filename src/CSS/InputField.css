@@ -1,0 +1,18 @@
+
+input{ 
+  margin: 3vh 0 3vh 3vh ;
+  padding: 10px;
+  border-radius: 4vh;
+  border: none;
+  outline: none;
+  width:60%;
+  
+}
+
+@media only screen and (min-width: 768px) {
+  .location-input{
+    padding: 15px;
+   border-radius: 4vh;
+   
+  }
+}
