@@ -6,7 +6,7 @@ import WeatherDisplay from './WeatherDisplay';
 import WeatherAPI from './WeatherAPI';
 import "../CSS/WeatherApp.css";
 import loadingSvg from "../Images/Loding.svg";
-import UnitConverter from "./UnitConvert";
+
 
 // Define the WeatherApp component
 const WeatherApp = () => {
@@ -15,13 +15,9 @@ const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [unit, setUnit] = useState('°C');
+  
 
-  // Function to handle unit changes and trigger weather data fetch
-  const handleUnitChange = (selectedUnit) => {
-    setUnit(selectedUnit);
-    handleFetchWeather();
-  };
+  
 
   // Async function to fetch weather data based on the user input
   const handleFetchWeather = async () => {
@@ -30,7 +26,7 @@ const WeatherApp = () => {
       setError(null);
 
       // Fetch weather data using the WeatherAPI module
-      const data = await WeatherAPI.fetchWeatherData(city, unit);
+      const data = await WeatherAPI.fetchWeatherData(city);
 
       // Handle error cases based on the response from the API
       if (data.cod && data.cod !== 200) {
@@ -41,7 +37,7 @@ const WeatherApp = () => {
         }
         setWeatherData(null);
       } else {
-        setWeatherData({ ...data, unit });
+        setWeatherData({ ...data });
       }
     } catch (error) {
       // Check for specific error cases and provide user-friendly messages
@@ -60,9 +56,6 @@ const WeatherApp = () => {
   return (
     <>
       {/* UnitConverter component for changing temperature units */}
-      <div className="convert">
-        {weatherData && <UnitConverter onUnitChange={handleUnitChange} />}
-      </div>
 
       {/* Main container for the WeatherApp */}
       <div className="App-Container">

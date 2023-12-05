@@ -16,6 +16,8 @@ const WeatherDisplay = ({ weatherData }) => {
   
   // State variable to manage the weather icon dynamically
   const [weatherIcon, setWeatherIcon] = useState("");
+// for converting Temprature unit °C to °F and vise versa
+  const [isCelsius, setIsCelsius] = useState(true);
 
   // Effect to update the weather icon based on the current weather condition
   useEffect(() => {
@@ -43,17 +45,33 @@ const WeatherDisplay = ({ weatherData }) => {
     }
   }, [weatherData.weather[0].main]); // Run only when weather condition changes
   
-  // Convert temperature to Fahrenheit if the unit is °F
-  const temperature = weatherData.unit === '°C' ? weatherData.main.temp : (weatherData.main.temp * 9/5) + 32;
+  
+  //for converting Temprature unit °C to °F and vise versa
+  const convertTemperature = () => {
+    return isCelsius ? weatherData.main.temp : (weatherData.main.temp * 9/5) + 32;
+  };
+ 
+ 
+  
 
   return (
     <div>
+     {/*for converting Temprature unit °C to °F and vise versa*/}
+     <div class="toggle-container" >
+         <input type="checkbox" id="unitToggle" class="toggle-input"  
+          onChange={()=> setIsCelsius(!isCelsius)}
+          />
+         <label for="unitToggle" class="toggle-label" >
+        <div class="toggle-slider"></div>
+         </label>
+    </div >
+
       <div className="weather">
         <h4>{weatherData.weather[0].description}</h4>
         {/*image depend on weather means rain , snow cloudy*/}
         <img src={weatherIcon} alt="weather icon" className="weather-icon"/>
         {/*Temprature Information*/}
-        <h1 className="temp">{temperature}{weatherData.unit}</h1>
+        <h1> {convertTemperature().toFixed(2)}°{isCelsius ? 'C' : 'F'}</h1>
         {/*City Name*/}
         <h2 className="city">{weatherData.name}</h2>
         <div className="details">

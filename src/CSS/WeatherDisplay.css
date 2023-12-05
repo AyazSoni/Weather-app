@@ -9,19 +9,18 @@
 .weather h1{
 font-size: 40px;
 font-weight: 500;
-
 margin-top:10px;
 }
 
 .weather h4{
-  margin: 0px;
+  margin-top: -30px;
   
 }
 
 .weather h2{
 font-size: 25px;
 font-weight: 400;
-margin-top:-15px;
+margin-top:-25px;
 }
 
 .details{
@@ -29,7 +28,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 10px;
-margin-top: 30px;
+margin-top: 10px;
 margin-left: 10px;
 margin-right: 10px;
 }
@@ -56,6 +55,65 @@ margin-top:-0px;
 .inf-hum-win{
    font-size: 10px;
    margin-top: -15px;
+}
+/* Toggle Button Style */
+.toggle-container {
+  width: 100%;
+  position: relative;
+  bottom: 25vh;
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  display: block;
+  width: 80px;
+  height: 40px;
+  background-color: #3498db;
+  border-radius: 40px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Styling for Celsius side */
+.toggle-input:checked + .toggle-label {
+  background-color: #2ecc71; /* Green color for Celsius */
+}
+
+/* Styling for Fahrenheit side */
+.toggle-input + .toggle-label::before {
+  content: "°C";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.toggle-input:checked + .toggle-label::before {
+  content: "°F"; /* Change to Fahrenheit when toggled */
+  left: 10px;
+  right: auto;
+}
+
+/* Move slider to the right for Fahrenheit */
+.toggle-input:checked + .toggle-label .toggle-slider {
+  transform: translateX(40px);
 }
 
 @media only screen and (min-width: 768px) {
@@ -90,4 +148,7 @@ margin-top:-0px;
     margin-right: 20px;
   }
   
+  .toggle-container{
+    bottom: 15vh;
+  }
 }
